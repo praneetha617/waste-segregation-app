@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-// You can replace this with your real video screen import later!
-// import 'video_page.dart';
+import 'educational_video_page.dart'; // <-- Make sure this path matches your project
 
 class WasteCategorySelectionPage extends StatelessWidget {
   const WasteCategorySelectionPage({super.key});
@@ -13,26 +11,30 @@ class WasteCategorySelectionPage extends StatelessWidget {
       WasteCategory(
         name: 'Wet Waste',
         color: Colors.black,
-        icon: Icons.opacity, // Use a custom bin image if you have one!
+        icon: Icons.opacity,
         binColor: Colors.black,
+        videoAsset: 'assets/images/videos/wet_waste.mp4',
       ),
       WasteCategory(
         name: 'Dry Waste',
         color: Colors.blue[700]!,
         icon: Icons.inbox,
         binColor: Colors.blue[700]!,
+        videoAsset: 'assets/images/videos/dry_waste.mp4',
       ),
       WasteCategory(
         name: 'Food Waste',
         color: Colors.green[700]!,
         icon: Icons.restaurant,
         binColor: Colors.green[700]!,
+        videoAsset: 'assets/images/videos/food_waste.mp4',
       ),
       WasteCategory(
         name: 'Hazardous Waste',
         color: Colors.red[700]!,
         icon: Icons.warning,
         binColor: Colors.red[700]!,
+        videoAsset: 'assets/images/videos/hazardous_waste.mp4',
       ),
     ];
 
@@ -77,10 +79,22 @@ class WasteCategorySelectionPage extends StatelessWidget {
                       const SizedBox(height: 24),
                       ...categories.map((category) => Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
-                        child: CategoryButton(category: category, onTap: () {
-                          // TODO: Navigate to educational video page for this category
-                          // Navigator.push(context, MaterialPageRoute(builder: (_) => VideoPage(category: category)));
-                        }),
+                        child: CategoryButton(
+                          category: category,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => EducationalVideoPage(
+                                  categoryName: category.name,
+                                  icon: category.icon,
+                                  binColor: category.binColor,
+                                  videoAsset: category.videoAsset, //pass the path
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       )),
                     ],
                   ),
@@ -99,7 +113,8 @@ class WasteCategory {
   final Color color;
   final IconData icon;
   final Color binColor;
-  WasteCategory({required this.name, required this.color, required this.icon, required this.binColor});
+  final String videoAsset;
+  WasteCategory({required this.name, required this.color, required this.icon, required this.binColor, required this.videoAsset,});
 }
 
 class CategoryButton extends StatelessWidget {
