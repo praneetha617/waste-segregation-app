@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'widgets/my_video_widget.dart';
+import 'food_waste_game_page.dart';
 
 class EducationalVideoPage extends StatelessWidget {
   final String categoryName;
@@ -78,7 +79,10 @@ class EducationalVideoPage extends StatelessWidget {
                           minimumSize: const Size(200, 48),
                         ),
                         onPressed: () {
-                          // TODO: Navigate to game screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => FoodWasteGamePage()),
+                          ); // TODO: Navigate to game screen
                         },
                       ),
                     ],
