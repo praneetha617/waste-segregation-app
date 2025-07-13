@@ -123,10 +123,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'learn_to_sort_waste_page.dart';
+import 'waste_category_selection_page.dart'; 
 
 void main() {
-  runApp(ColorfulTrashGameApp());
+  runApp(const ColorfulTrashGameApp());
 }
 
 class ColorfulTrashGameApp extends StatelessWidget {
@@ -230,25 +230,21 @@ class HomePage extends StatelessWidget {
                         color: const Color(0xFFB4E2FF),
                         textColor: Colors.blue[900]!,
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => LearnToSortWastePage()),
-                          );
+                          // TODO: Replace with your real navigation:
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => WasteCategorySelectionPage()),
+                           );
                         },
-                      ),
-                      HomeButton(
-                        icon: Icons.videogame_asset,
-                        text: 'Play Game',
-                        color: const Color(0xFFD9F4C7),
-                        textColor: Colors.green[900]!,
-                        onPressed: () {},
                       ),
                       HomeButton(
                         icon: Icons.emoji_events,
                         text: 'My Rewards',
                         color: const Color(0xFFFFF7C5),
                         textColor: Colors.orange[900]!,
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODO: Add navigation for rewards page
+                        },
                       ),
                     ],
                   ),
@@ -310,6 +306,7 @@ class HomeButton extends StatelessWidget {
     );
   }
 }
+
 
 
 
