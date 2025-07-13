@@ -122,76 +122,138 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'learn_to_sort_waste_page.dart';
-
 
 void main() {
   runApp(ColorfulTrashGameApp());
 }
 
 class ColorfulTrashGameApp extends StatelessWidget {
+  const ColorfulTrashGameApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Colorful Trash Game',
       theme: ThemeData(
-        fontFamily: 'ComicSans', // optional: use Google Fonts
-        scaffoldBackgroundColor: Colors.lightBlue[50],
-        primarySwatch: Colors.green,
+        fontFamily: GoogleFonts.fredoka().fontFamily, // Fun Google font
+        scaffoldBackgroundColor: Colors.transparent,
       ),
-      home: HomePage(),
+      home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Colorful Trash Game',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green[800],
-                    shadows: [
-                      Shadow(color: Colors.green, offset: Offset(1, 2), blurRadius: 3),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF58CFFB), Color(0xFF28E0AE)], // blue to green
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(36),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 20,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 28),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Mascot image
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset(
+                          'assets/images/mascot.png',
+                          height: 110,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Text(
+                              'Mascot not found!',
+                              style: TextStyle(color: Colors.red),
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      // Outlined, colorful title
+                      Stack(
+                        children: [
+                          Text(
+                            'Colorful Trash Game',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.fredoka(
+                              fontSize: 34,
+                              fontWeight: FontWeight.bold,
+                              foreground: Paint()
+                                ..style = PaintingStyle.stroke
+                                ..strokeWidth = 6
+                                ..color = Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'Colorful Trash Game',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.fredoka(
+                              fontSize: 34,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFF36b37e),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 30),
+                      // Buttons
+                      HomeButton(
+                        icon: Icons.school,
+                        text: 'Learn to Sort Waste',
+                        color: const Color(0xFFB4E2FF),
+                        textColor: Colors.blue[900]!,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => LearnToSortWastePage()),
+                          );
+                        },
+                      ),
+                      HomeButton(
+                        icon: Icons.videogame_asset,
+                        text: 'Play Game',
+                        color: const Color(0xFFD9F4C7),
+                        textColor: Colors.green[900]!,
+                        onPressed: () {},
+                      ),
+                      HomeButton(
+                        icon: Icons.emoji_events,
+                        text: 'My Rewards',
+                        color: const Color(0xFFFFF7C5),
+                        textColor: Colors.orange[900]!,
+                        onPressed: () {},
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    'assets/images/mascot.png',
-                    height: 200,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Text(
-                        'Mascot not found!',
-                        style: TextStyle(color: Colors.red),
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: 30),
-                CustomButton(text: 'Learn to Sort Waste', onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => LearnToSortWastePage()),
-                  );
-                }),
-                CustomButton(text: 'Play Game', onPressed: () {}),
-                CustomButton(text: 'My Rewards', onPressed: () {}),
-              ],
+              ),
             ),
           ),
         ),
@@ -200,29 +262,54 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class CustomButton extends StatelessWidget {
+class HomeButton extends StatelessWidget {
+  final IconData icon;
   final String text;
+  final Color color;
+  final Color textColor;
   final VoidCallback onPressed;
 
-  const CustomButton({required this.text, required this.onPressed});
+  const HomeButton({
+    super.key,
+    required this.icon,
+    required this.text,
+    required this.color,
+    required this.textColor,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.purple[100],
-          foregroundColor: Colors.deepPurple,
-          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-          textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: SizedBox(
+        width: double.infinity,
+        child: ElevatedButton.icon(
+          icon: Icon(icon, color: textColor, size: 28),
+          label: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Text(
+              text,
+              style: GoogleFonts.fredoka(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              ),
+            ),
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: color,
+            elevation: 3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32),
+            ),
+          ),
+          onPressed: onPressed,
         ),
-        child: Text(text),
       ),
     );
   }
 }
+
 
 
