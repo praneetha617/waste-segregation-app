@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'educational_video_page.dart'; // <-- Make sure this path matches your project
+import 'educational_video_page.dart'; // Make sure this path is correct
 
 class WasteCategorySelectionPage extends StatelessWidget {
   const WasteCategorySelectionPage({super.key});
@@ -9,28 +9,21 @@ class WasteCategorySelectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final categories = [
       WasteCategory(
-        name: 'Wet Waste',
-        color: Colors.black,
-        icon: Icons.opacity,
-        binColor: Colors.black,
+        name: 'Wet/Organic Waste',
+        color: Colors.green[700]!,
+        icon: Icons.eco,
+        binColor: Colors.green[700]!,
         videoAsset: 'assets/images/videos/wet_waste.mp4',
       ),
       WasteCategory(
-        name: 'Dry Waste',
+        name: 'Dry/Recyclable Waste',
         color: Colors.blue[700]!,
         icon: Icons.inbox,
         binColor: Colors.blue[700]!,
         videoAsset: 'assets/images/videos/dry_waste.mp4',
       ),
       WasteCategory(
-        name: 'Food Waste',
-        color: Colors.green[700]!,
-        icon: Icons.restaurant,
-        binColor: Colors.green[700]!,
-        videoAsset: 'assets/images/videos/food_waste.mp4',
-      ),
-      WasteCategory(
-        name: 'Hazardous Waste',
+        name: 'Domestic Hazardous Waste',
         color: Colors.red[700]!,
         icon: Icons.warning,
         binColor: Colors.red[700]!,
@@ -82,6 +75,7 @@ class WasteCategorySelectionPage extends StatelessWidget {
                         child: CategoryButton(
                           category: category,
                           onTap: () {
+                            // Removed FirebaseAnalytics logging
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -89,7 +83,7 @@ class WasteCategorySelectionPage extends StatelessWidget {
                                   categoryName: category.name,
                                   icon: category.icon,
                                   binColor: category.binColor,
-                                  videoAsset: category.videoAsset, //pass the path
+                                  videoAsset: category.videoAsset,
                                 ),
                               ),
                             );
@@ -114,7 +108,13 @@ class WasteCategory {
   final IconData icon;
   final Color binColor;
   final String videoAsset;
-  WasteCategory({required this.name, required this.color, required this.icon, required this.binColor, required this.videoAsset,});
+  WasteCategory({
+    required this.name,
+    required this.color,
+    required this.icon,
+    required this.binColor,
+    required this.videoAsset,
+  });
 }
 
 class CategoryButton extends StatelessWidget {
@@ -140,7 +140,7 @@ class CategoryButton extends StatelessWidget {
           ),
         ),
         style: ElevatedButton.styleFrom(
-          backgroundColor: category.color.withOpacity(0.08),
+          backgroundColor: category.color.withAlpha((0.08 * 255).round()),
           elevation: 4,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),

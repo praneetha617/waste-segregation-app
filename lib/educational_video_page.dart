@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'widgets/my_video_widget.dart';
-import 'food_waste_game_page.dart';
+import 'sorting_game_page.dart';
+// import 'your_enum_file.dart'; // Only if needed
 
-class EducationalVideoPage extends StatelessWidget {
+class EducationalVideoPage extends StatefulWidget {
   final String categoryName;
   final IconData icon;
   final Color binColor;
@@ -16,6 +17,25 @@ class EducationalVideoPage extends StatelessWidget {
     required this.binColor,
     required this.videoAsset,
   });
+
+  @override
+  State<EducationalVideoPage> createState() => _EducationalVideoPageState();
+}
+
+class _EducationalVideoPageState extends State<EducationalVideoPage> {
+  bool _videoCompleted = false;
+
+  WasteType get wasteType {
+    if (widget.categoryName.toLowerCase().contains('wet') ||
+        widget.categoryName.toLowerCase().contains('organic')) {
+      return WasteType.organic;
+    } else if (widget.categoryName.toLowerCase().contains('dry') ||
+        widget.categoryName.toLowerCase().contains('recyclable')) {
+      return WasteType.dry;
+    } else {
+      return WasteType.hazardous;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,41 +69,63 @@ class EducationalVideoPage extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(icon, color: binColor, size: 60),
+                      Icon(widget.icon, color: widget.binColor, size: 60),
                       const SizedBox(height: 10),
                       Text(
-                        categoryName,
+                        widget.categoryName,
                         style: GoogleFonts.fredoka(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
-                          color: binColor,
+                          color: widget.binColor,
                         ),
                       ),
                       const SizedBox(height: 20),
-                      // === Actual Video Player Widget ===
-                      MyVideoWidget(assetPath: videoAsset),
+                      MyVideoWidget(
+                        assetPath: widget.videoAsset,
+                        onVideoCompleted: () {
+                          setState(() {
+                            _videoCompleted = true;
+                          });
+                        },
+                      ),
                       const SizedBox(height: 18),
                       Text(
-                        "Watch this short video to learn about $categoryName!",
+                        "Watch this short video to learn about ${widget.categoryName}!",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.fredoka(fontSize: 18, color: Colors.grey[700]),
                       ),
                       const SizedBox(height: 26),
                       ElevatedButton.icon(
                         icon: const Icon(Icons.arrow_forward),
-                        label: const Text("Continue to Game", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        label: Text(
+                          _videoCompleted
+                              ? "Continue to Game"
+                              : "Please watch the whole video",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: _videoCompleted ? Colors.white : Colors.grey[600],
+                          ),
+                        ),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: binColor.withOpacity(0.15),
-                          foregroundColor: binColor,
+                        backgroundColor: _videoCompleted
+                            ? widget.binColor
+                            : widget.binColor.withAlpha((0.15 * 255).toInt()),
+                          foregroundColor: _videoCompleted ? Colors.white : Colors.grey[600],
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
                           minimumSize: const Size(200, 48),
+                          elevation: _videoCompleted ? 4 : 0,
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => FoodWasteGamePage()),
-                          ); // TODO: Navigate to game screen
-                        },
+                        onPressed: _videoCompleted
+                            ? () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => SortingGamePage(selectedType: wasteType),
+                                  ),
+                                );
+                              }
+                            : null,
                       ),
                     ],
                   ),
