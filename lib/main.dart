@@ -1,129 +1,8 @@
-// import 'package:flutter/material.dart';
-
-// void main() {
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         // This is the theme of your application.
-//         //
-//         // TRY THIS: Try running your application with "flutter run". You'll see
-//         // the application has a purple toolbar. Then, without quitting the app,
-//         // try changing the seedColor in the colorScheme below to Colors.green
-//         // and then invoke "hot reload" (save your changes or press the "hot
-//         // reload" button in a Flutter-supported IDE, or press "r" if you used
-//         // the command line to start the app).
-//         //
-//         // Notice that the counter didn't reset back to zero; the application
-//         // state is not lost during the reload. To reset the state, use hot
-//         // restart instead.
-//         //
-//         // This works for code too, not just values: Most code changes can be
-//         // tested with just a hot reload.
-//         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-//       ),
-//       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-//     );
-//   }
-// }
-
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key, required this.title});
-
-//   // This widget is the home page of your application. It is stateful, meaning
-//   // that it has a State object (defined below) that contains fields that affect
-//   // how it looks.
-
-//   // This class is the configuration for the state. It holds the values (in this
-//   // case the title) provided by the parent (in this case the App widget) and
-//   // used by the build method of the State. Fields in a Widget subclass are
-//   // always marked "final".
-
-//   final String title;
-
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   int _counter = 0;
-
-//   void _incrementCounter() {
-//     setState(() {
-//       // This call to setState tells the Flutter framework that something has
-//       // changed in this State, which causes it to rerun the build method below
-//       // so that the display can reflect the updated values. If we changed
-//       // _counter without calling setState(), then the build method would not be
-//       // called again, and so nothing would appear to happen.
-//       _counter++;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     // This method is rerun every time setState is called, for instance as done
-//     // by the _incrementCounter method above.
-//     //
-//     // The Flutter framework has been optimized to make rerunning build methods
-//     // fast, so that you can just rebuild anything that needs updating rather
-//     // than having to individually change instances of widgets.
-//     return Scaffold(
-//       appBar: AppBar(
-//         // TRY THIS: Try changing the color here to a specific color (to
-//         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-//         // change color while the other colors stay the same.
-//         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-//         // Here we take the value from the MyHomePage object that was created by
-//         // the App.build method, and use it to set our appbar title.
-//         title: Text(widget.title),
-//       ),
-//       body: Center(
-//         // Center is a layout widget. It takes a single child and positions it
-//         // in the middle of the parent.
-//         child: Column(
-//           // Column is also a layout widget. It takes a list of children and
-//           // arranges them vertically. By default, it sizes itself to fit its
-//           // children horizontally, and tries to be as tall as its parent.
-//           //
-//           // Column has various properties to control how it sizes itself and
-//           // how it positions its children. Here we use mainAxisAlignment to
-//           // center the children vertically; the main axis here is the vertical
-//           // axis because Columns are vertical (the cross axis would be
-//           // horizontal).
-//           //
-//           // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-//           // action in the IDE, or press "p" in the console), to see the
-//           // wireframe for each widget.
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             const Text('You have pushed the button this many times:'),
-//             Text(
-//               '$_counter',
-//               style: Theme.of(context).textTheme.headlineMedium,
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: _incrementCounter,
-//         tooltip: 'Increment',
-//         child: const Icon(Icons.add),
-//       ), // This trailing comma makes auto-formatting nicer for build methods.
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'waste_category_selection_page.dart'; 
+import 'waste_category_selection_page.dart';
+import 'rewards_page.dart';
+import 'utils/progress_tracker.dart';
 
 void main() {
   runApp(const ColorfulTrashGameApp());
@@ -137,25 +16,116 @@ class ColorfulTrashGameApp extends StatelessWidget {
     return MaterialApp(
       title: 'Colorful Trash Game',
       theme: ThemeData(
-        fontFamily: GoogleFonts.fredoka().fontFamily, // Fun Google font
+        fontFamily: GoogleFonts.fredoka().fontFamily,
         scaffoldBackgroundColor: Colors.transparent,
       ),
-      home: const HomePage(),
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/category': (context) => const WasteCategorySelectionPage(),
+        '/rewards': (context) => const RewardsPage(
+          rewardTitle: "🎉 Sorting Star!",
+          rewardMessage: "You’ve completed Level 1 in all categories!",
+          rewardImageAsset: 'assets/images/reward_trophy.png',
+          funFact: "Worms love composted food scraps — it’s their favorite treat!",
+        ),
+      },
     );
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  late AnimationController _handController;
+  late Animation<double> _handAnimation;
+  bool _isRewardsUnlocked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkProgress();
+
+    _handController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    )..repeat(reverse: true);
+
+    _handAnimation = Tween<double>(begin: 0, end: 0.18).animate(
+      CurvedAnimation(parent: _handController, curve: Curves.easeInOut),
+    );
+  }
+
+  Future<void> _checkProgress() async {
+    final unlocked = await ProgressTracker.isAllCategoriesCompleted();
+    if (mounted) {
+      setState(() {
+        _isRewardsUnlocked = unlocked;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _handController.dispose();
+    super.dispose();
+  }
+
+  Widget buildRainbowLetters(String text, double fontSize) {
+    final List<Color> rainbowColors = [
+      Colors.red,
+      Colors.orange,
+      Colors.yellow[700]!,
+      Colors.green,
+      Colors.blue,
+      Colors.indigo,
+      Colors.purple,
+    ];
+
+    List<TextSpan> spans = [];
+    for (int i = 0; i < text.length; i++) {
+      if (text[i] == ' ') {
+        spans.add(const TextSpan(text: ' '));
+      } else {
+        spans.add(
+          TextSpan(
+            text: text[i],
+            style: GoogleFonts.fredoka(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: rainbowColors[i % rainbowColors.length],
+              shadows: [
+                Shadow(
+                  blurRadius: 3,
+                  color: Colors.black.withAlpha((0.18 * 255).round()),
+                  offset: const Offset(1, 2),
+                )
+              ],
+            ),
+          ),
+        );
+      }
+    }
+
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(children: spans),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    _checkProgress();
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF58CFFB), Color(0xFF28E0AE)], // blue to green
+            colors: [Color(0xFF58CFFB), Color(0xFF28E0AE)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -181,60 +151,60 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Mascot image
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(
-                          'assets/images/mascot.png',
-                          height: 110,
-                          errorBuilder: (context, error, stackTrace) {
-                            return const Text(
-                              'Mascot not found!',
-                              style: TextStyle(color: Colors.red),
-                            );
-                          },
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      // Outlined, colorful title
-                      Stack(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Colorful Trash Game',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.fredoka(
-                              fontSize: 34,
-                              fontWeight: FontWeight.bold,
-                              foreground: Paint()
-                                ..style = PaintingStyle.stroke
-                                ..strokeWidth = 6
-                                ..color = Colors.black,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(18),
+                            child: Image.asset(
+                              'assets/images/mascot.png',
+                              height: 88,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Text(
+                                  'Mascot not found!',
+                                  style: TextStyle(color: Colors.red),
+                                );
+                              },
                             ),
                           ),
-                          Text(
-                            'Colorful Trash Game',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.fredoka(
-                              fontSize: 34,
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xFF36b37e),
+                          RotationTransition(
+                            turns: _handAnimation,
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 8),
+                              child: Text("👋", style: TextStyle(fontSize: 36)),
                             ),
                           ),
                         ],
                       ),
+                      const SizedBox(height: 10),
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlue[50],
+                          borderRadius: BorderRadius.circular(18),
+                          border: Border.all(color: Colors.lightBlue, width: 1.8),
+                        ),
+                        child: Text(
+                          "Hey! Ready for some colorful recycling fun? 🎉",
+                          style: GoogleFonts.fredoka(
+                            fontSize: 16,
+                            color: Colors.blueGrey[700],
+                            fontWeight: FontWeight.w500,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      buildRainbowLetters('Colorful Trash Game', 34.0),
                       const SizedBox(height: 30),
-                      // Buttons
                       HomeButton(
                         icon: Icons.school,
                         text: 'Learn to Sort Waste',
                         color: const Color(0xFFB4E2FF),
                         textColor: Colors.blue[900]!,
                         onPressed: () {
-                          // TODO: Replace with your real navigation:
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => WasteCategorySelectionPage()),
-                           );
+                          Navigator.pushNamed(context, '/category');
                         },
                       ),
                       HomeButton(
@@ -243,7 +213,17 @@ class HomePage extends StatelessWidget {
                         color: const Color(0xFFFFF7C5),
                         textColor: Colors.orange[900]!,
                         onPressed: () {
-                          // TODO: Add navigation for rewards page
+                          if (_isRewardsUnlocked) {
+                            Navigator.pushNamed(context, '/rewards');
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: const Text("Complete all 3 levels to unlock your reward!"),
+                                behavior: SnackBarBehavior.floating,
+                                backgroundColor: Colors.orange[700],
+                              ),
+                            );
+                          }
                         },
                       ),
                     ],
@@ -258,7 +238,9 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HomeButton extends StatelessWidget {
+// Add this HomeButton class BELOW everything else in main.dart:
+
+class HomeButton extends StatefulWidget {
   final IconData icon;
   final String text;
   final Color color;
@@ -275,38 +257,51 @@ class HomeButton extends StatelessWidget {
   });
 
   @override
+  State<HomeButton> createState() => _HomeButtonState();
+}
+
+class _HomeButtonState extends State<HomeButton> {
+  double _scale = 1.0;
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: SizedBox(
-        width: double.infinity,
-        child: ElevatedButton.icon(
-          icon: Icon(icon, color: textColor, size: 28),
-          label: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              text,
-              style: GoogleFonts.fredoka(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: textColor,
+      child: GestureDetector(
+        onTapDown: (_) => setState(() => _scale = 0.97),
+        onTapUp: (_) => setState(() => _scale = 1.0),
+        onTapCancel: () => setState(() => _scale = 1.0),
+        onTap: widget.onPressed,
+        child: AnimatedScale(
+          scale: _scale,
+          duration: const Duration(milliseconds: 80),
+          child: SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              icon: Icon(widget.icon, color: widget.textColor, size: 28),
+              label: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                  widget.text,
+                  style: GoogleFonts.fredoka(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: widget.textColor,
+                  ),
+                ),
               ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: widget.color,
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32),
+                ),
+              ),
+              onPressed: widget.onPressed,
             ),
           ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: color,
-            elevation: 3,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(32),
-            ),
-          ),
-          onPressed: onPressed,
         ),
       ),
     );
   }
 }
-
-
-
-
