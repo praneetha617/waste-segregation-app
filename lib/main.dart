@@ -1,11 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_analytics/firebase_analytics.dart';
+import 'tracking_service.dart'; // Create this in /lib
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'waste_category_selection_page.dart';
 import 'rewards_page.dart';
 import 'utils/progress_tracker.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const ColorfulTrashGameApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  
+  await TrackingService.logAppOpened();
+  
+  runApp(ColorfulTrashGameApp());
 }
 
 class ColorfulTrashGameApp extends StatelessWidget {
@@ -204,6 +216,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         color: const Color(0xFFB4E2FF),
                         textColor: Colors.blue[900]!,
                         onPressed: () {
+                          TrackingService.logCategorySelected('home_entry');
                           Navigator.pushNamed(context, '/category');
                         },
                       ),
@@ -214,8 +227,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         textColor: Colors.orange[900]!,
                         onPressed: () {
                           if (_isRewardsUnlocked) {
+                             TrackingService.logReplayTriggered('reward_page', 'home_screen');
                             Navigator.pushNamed(context, '/rewards');
                           } else {
+                            TrackingService.logFeedback('❌ Locked');
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: const Text("Complete all 3 levels to unlock your reward!"),

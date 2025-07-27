@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'tracking_service.dart';
 import 'models/quiz_question.dart';
 import 'quiz_page.dart';
 import 'data/quiz_data.dart';
@@ -65,7 +66,12 @@ class _SortingGamePageState extends State<SortingGamePage> {
   }
 
   void _handleDrop(WasteItem item, WasteType binType) {
-    if (item.type == binType) {
+    bool isCorrect = item.type == binType;
+    TrackingService.logDragAttempt(
+      item.name,
+      isCorrect,
+    );
+    if (isCorrect) {
       setState(() {
         _score++;
         _remainingItems.remove(item);
@@ -119,6 +125,8 @@ class _SortingGamePageState extends State<SortingGamePage> {
             if (!mounted) return;
 
             await ProgressTracker.markCategoryCompleted(categoryKey);
+            if (!mounted) return;
+
             Navigator.of(context).pop(); // close alert dialog if open
 
             if (!mounted) return;

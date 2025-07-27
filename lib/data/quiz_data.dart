@@ -2,6 +2,7 @@ import '../models/quiz_question.dart';
 
 final wetWasteQuestions = [
   QuizQuestion(
+     id: "wet1",
     question: "Which of these is considered wet/organic waste?",
     options: ["Plastic Bottle", "Banana Peel", "Battery", "Newspaper"],
     correctIndex: 1,
@@ -13,6 +14,7 @@ final wetWasteQuestions = [
     ],
   ),
   QuizQuestion(
+    id: "wet2",
     question: "Where should vegetable peels go?",
     options: [
       "Green bin",
@@ -33,6 +35,7 @@ final wetWasteQuestions = [
 
 final dryWasteQuestions = [
   QuizQuestion(
+    id: "dry1",
     question: "Which item should go in the dry/recyclable waste bin?",
     options: ["Apple core", "Plastic bottle", "Used tissue", "Nail polish bottle"],
     correctIndex: 1,
@@ -44,6 +47,7 @@ final dryWasteQuestions = [
     ],
   ),
   QuizQuestion(
+    id: "dry2",
     question: "Where should you throw old newspapers?",
     options: [
       "Green bin",
@@ -63,6 +67,7 @@ final dryWasteQuestions = [
 
 final hazardousWasteQuestions = [
   QuizQuestion(
+    id: "haz1",
     question: "Which of these is hazardous waste?",
     options: ["Banana Peel", "Nail polish bottle", "Vegetable Skin", "Newspaper"],
     correctIndex: 1,
@@ -74,6 +79,7 @@ final hazardousWasteQuestions = [
     ],
   ),
   QuizQuestion(
+    id: "haz2",
     question: "Where should you throw used batteries?",
     options: [
       "Green bin",
@@ -87,6 +93,6 @@ final hazardousWasteQuestions = [
       "Blue bin is for dry/recyclable waste.",
       "Correct! Red bin is for hazardous waste like batteries.",
       "pink bin is typically used in standard segregation.",
-    ],
+    ], 
   ),
 ];

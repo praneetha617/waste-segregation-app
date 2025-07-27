@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'models/quiz_question.dart';
 import 'utils/progress_tracker.dart';
+import 'tracking_service.dart';
 
 class QuizPage extends StatefulWidget {
   final List<QuizQuestion> questions;
@@ -37,6 +38,7 @@ class _QuizPageState extends State<QuizPage> {
         centerTitle: true,
         backgroundColor: Colors.lightBlue[400],
       ),
+      backgroundColor: Colors.black, // For dark background
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
@@ -45,23 +47,29 @@ class _QuizPageState extends State<QuizPage> {
             children: [
               Text(
                 "Question ${_currentQuestion + 1} of ${widget.questions.length}",
-                style: GoogleFonts.fredoka(fontSize: 18, color: Colors.grey[800]),
+                style: GoogleFonts.fredoka(fontSize: 18, color: Colors.grey[300]),
               ),
               const SizedBox(height: 20),
               Text(
                 question.question,
-                style: GoogleFonts.fredoka(fontSize: 22, fontWeight: FontWeight.bold),
+                style: GoogleFonts.fredoka(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green[400], // Question text in green
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 28),
               ...List.generate(question.options.length, (index) {
-                Color backgroundColor = Colors.white;
-                Color textColor = Colors.black87;
+                bool isSelected = _selectedIndex == index;
+                bool isCorrect = index == question.correctIndex;
+                bool isWrongSelected = isSelected && !isCorrect;
 
+                Color textColor = Colors.white;
                 if (_questionAnswered) {
-                  if (index == question.correctIndex) {
+                  if (isCorrect) {
                     textColor = Colors.green;
-                  } else if (_selectedIndex == index) {
+                  } else if (isWrongSelected) {
                     textColor = Colors.red;
                   }
                 }
@@ -70,7 +78,7 @@ class _QuizPageState extends State<QuizPage> {
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: backgroundColor,
+                      backgroundColor: Colors.black,
                       minimumSize: const Size(double.infinity, 48),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
@@ -79,10 +87,7 @@ class _QuizPageState extends State<QuizPage> {
                           width: 2,
                         ),
                       ),
-                      elevation: _questionAnswered &&
-                              (_selectedIndex == index || index == question.correctIndex)
-                          ? 4
-                          : 1,
+                      elevation: _questionAnswered && (isSelected || isCorrect) ? 4 : 1,
                     ),
                     onPressed: _questionAnswered ? null : () => _handleAnswer(index),
                     child: Text(
@@ -98,7 +103,7 @@ class _QuizPageState extends State<QuizPage> {
                   padding: const EdgeInsets.all(12),
                   margin: const EdgeInsets.only(bottom: 12),
                   decoration: BoxDecoration(
-                    color: Colors.yellow[50],
+                    color: const Color(0xFFFFF8E1), // Light yellow background
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Text(
@@ -110,23 +115,25 @@ class _QuizPageState extends State<QuizPage> {
                   ),
                 ),
               if (_questionAnswered)
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue[400],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                Center(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF42A5F5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      minimumSize: const Size(160, 45),
                     ),
-                    minimumSize: const Size(180, 45),
-                  ),
-                  onPressed: _nextQuestion,
-                  child: Text(
-                    _currentQuestion < widget.questions.length - 1
-                        ? "Next"
-                        : "See Result",
-                    style: GoogleFonts.fredoka(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                    onPressed: _nextQuestion,
+                    child: Text(
+                      _currentQuestion < widget.questions.length - 1
+                          ? "Next"
+                          : "See Result",
+                      style: GoogleFonts.fredoka(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -138,21 +145,27 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _handleAnswer(int selected) {
+    final currentQ = widget.questions[_currentQuestion];
+    final isCorrect = selected == currentQ.correctIndex;
+
     setState(() {
       _selectedIndex = selected;
       _attempts++;
+      _showExplanation = true;
 
-      if (selected == widget.questions[_currentQuestion].correctIndex) {
+      // Immediately show Next button if correct, or after 3 tries
+      if (isCorrect || _attempts >= 3) {
+        if (!isCorrect) _mistakes++;
         _questionAnswered = true;
-        _showExplanation = true;
-      } else {
-        _showExplanation = true;
-        if (_attempts >= 3) {
-          _mistakes++;
-          _questionAnswered = true;
-        }
       }
     });
+
+    // Log attempt (non-blocking)
+    TrackingService.logQuizAttempt(
+      questionId: currentQ.id,
+      attemptNumber: _attempts,
+      correct: isCorrect,
+    );
   }
 
   void _nextQuestion() {
@@ -161,6 +174,7 @@ class _QuizPageState extends State<QuizPage> {
       _selectedIndex = null;
       _showExplanation = false;
       _questionAnswered = false;
+
       if (_currentQuestion < widget.questions.length - 1) {
         _currentQuestion++;
       } else {
@@ -172,10 +186,7 @@ class _QuizPageState extends State<QuizPage> {
   void _showResultDialog() async {
     int stars = _mistakes == 0 ? 5 : 4;
 
-    // Mark current category as completed
     await ProgressTracker.markCategoryCompleted(widget.categoryKey);
-
-    // Check if all categories are completed
     bool allCategoriesDone = await ProgressTracker.isAllCategoriesCompleted();
 
     if (!mounted) return;
@@ -206,17 +217,13 @@ class _QuizPageState extends State<QuizPage> {
           ],
         ),
         actions: [
-          // "Category" button (always visible)
           TextButton(
             child: Text("Category", style: GoogleFonts.fredoka(fontWeight: FontWeight.bold)),
             onPressed: () {
-              Navigator.of(context).pop(); // Close dialog
+              Navigator.of(context).pop();
               Navigator.of(context).pushReplacementNamed('/category');
-              // Or, to clear the stack: 
-              // Navigator.of(context).pushNamedAndRemoveUntil('/category', (route) => false);
             },
           ),
-          // "Return to Home" button, only visible if all categories completed
           if (allCategoriesDone)
             TextButton(
               child: Text("Return to Home", style: GoogleFonts.fredoka(fontWeight: FontWeight.bold)),
