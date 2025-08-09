@@ -1,0 +1,94 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.colorful_trash_game.app-mergeDebugResources-50:/values-fa/values-fa.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\6a0c96fd6ce96d6c5b648ef52be7d40f\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-fa\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "150",
+                        "endOffsets": "345"
+                    },
+                    "to": {
+                        "startLines": "36",
+                        "startColumns": "4",
+                        "startOffsets": "3519",
+                        "endColumns": "154",
+                        "endOffsets": "3669"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\3d7fa6a22ca661ac28e861f7750459ca\\transformed\\appcompat-1.1.0\\res\\values-fa\\values-fa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,215,316,427,511,612,727,807,885,978,1072,1164,1258,1361,1456,1553,1647,1740,1830,1911,2019,2123,2221,2327,2432,2537,2694,2795",
+                        "endColumns": "109,100,110,83,100,114,79,77,92,93,91,93,102,94,96,93,92,89,80,107,103,97,105,104,104,156,100,80",
+                        "endOffsets": "210,311,422,506,607,722,802,880,973,1067,1159,1253,1356,1451,1548,1642,1735,1825,1906,2014,2118,2216,2322,2427,2532,2689,2790,2871"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,50",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,215,316,427,511,612,727,807,885,978,1072,1164,1258,1361,1456,1553,1647,1740,1830,1911,2019,2123,2221,2327,2432,2537,2694,4686",
+                        "endColumns": "109,100,110,83,100,114,79,77,92,93,91,93,102,94,96,93,92,89,80,107,103,97,105,104,104,156,100,80",
+                        "endOffsets": "210,311,422,506,607,722,802,880,973,1067,1159,1253,1356,1451,1548,1642,1735,1825,1906,2014,2118,2216,2322,2427,2532,2689,2790,4762"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\9433249cf7cca043abfad64221cfe7fa\\transformed\\jetified-media3-exoplayer-1.4.1\\res\\values-fa\\values-fa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,122,183,250,310,388,463,552,640",
+                        "endColumns": "66,60,66,59,77,74,88,87,64",
+                        "endOffsets": "117,178,245,305,383,458,547,635,700"
+                    },
+                    "to": {
+                        "startLines": "38,39,40,41,42,43,44,45,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3741,3808,3869,3936,3996,4074,4149,4238,4326",
+                        "endColumns": "66,60,66,59,77,74,88,87,64",
+                        "endOffsets": "3803,3864,3931,3991,4069,4144,4233,4321,4386"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\60158b6ef0eba3057dadcbb0af97f8e4\\transformed\\core-1.13.1\\res\\values-fa\\values-fa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,154,256,355,455,556,662,779",
+                        "endColumns": "98,101,98,99,100,105,116,100",
+                        "endOffsets": "149,251,350,450,551,657,774,875"
+                    },
+                    "to": {
+                        "startLines": "29,30,31,32,33,34,35,51",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "2795,2894,2996,3095,3195,3296,3402,4767",
+                        "endColumns": "98,101,98,99,100,105,116,100",
+                        "endOffsets": "2889,2991,3090,3190,3291,3397,3514,4863"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\065f2745b3e1448563ef5015011a34be\\transformed\\preference-1.2.1\\res\\values-fa\\values-fa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "105,172,258,335,467,636,718",
+                        "endColumns": "66,85,76,131,168,81,77",
+                        "endOffsets": "167,253,330,462,631,713,791"
+                    },
+                    "to": {
+                        "startLines": "37,47,48,49,52,53,54",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "3674,4391,4477,4554,4868,5037,5119",
+                        "endColumns": "66,85,76,131,168,81,77",
+                        "endOffsets": "3736,4472,4549,4681,5032,5114,5192"
+                    }
+                }
+            ]
+        }
+    ]
+}

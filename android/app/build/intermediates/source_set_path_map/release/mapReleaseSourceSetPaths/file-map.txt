@@ -45,11 +45,11 @@ com.example.colorful_trash_game.app-release-43 C:\Users\prane\AppData\Local\Pub\
 com.example.colorful_trash_game.app-release-44 C:\Users\prane\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.17\android\build\intermediates\packaged_res\release\packageReleaseResources
 com.example.colorful_trash_game.app-release-45 C:\Users\prane\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.4.10\android\build\intermediates\packaged_res\release\packageReleaseResources
 com.example.colorful_trash_game.app-release-46 C:\Users\prane\AppData\Local\Pub\Cache\hosted\pub.dev\video_player_android-2.8.7\android\build\intermediates\packaged_res\release\packageReleaseResources
-com.example.colorful_trash_game.app-pngs-47 C:\Users\prane\colorful_trash_game\android\app\build\generated\res\pngs\release
-com.example.colorful_trash_game.app-resValues-48 C:\Users\prane\colorful_trash_game\android\app\build\generated\res\resValues\release
-com.example.colorful_trash_game.app-packageReleaseResources-49 C:\Users\prane\colorful_trash_game\android\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
-com.example.colorful_trash_game.app-packageReleaseResources-50 C:\Users\prane\colorful_trash_game\android\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
-com.example.colorful_trash_game.app-merged-not-compiled-resources-51 C:\Users\prane\colorful_trash_game\android\app\build\intermediates\merged-not-compiled-resources\release
+com.example.colorful_trash_game.app-google-services-47 C:\Users\prane\colorful_trash_game\android\app\build\generated\res\google-services\release
+com.example.colorful_trash_game.app-pngs-48 C:\Users\prane\colorful_trash_game\android\app\build\generated\res\pngs\release
+com.example.colorful_trash_game.app-resValues-49 C:\Users\prane\colorful_trash_game\android\app\build\generated\res\resValues\release
+com.example.colorful_trash_game.app-packageReleaseResources-50 C:\Users\prane\colorful_trash_game\android\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.example.colorful_trash_game.app-packageReleaseResources-51 C:\Users\prane\colorful_trash_game\android\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
 com.example.colorful_trash_game.app-release-52 C:\Users\prane\colorful_trash_game\android\app\build\intermediates\merged_res\release\mergeReleaseResources
 com.example.colorful_trash_game.app-main-53 C:\Users\prane\colorful_trash_game\android\app\src\main\res
 com.example.colorful_trash_game.app-release-54 C:\Users\prane\colorful_trash_game\android\app\src\release\res

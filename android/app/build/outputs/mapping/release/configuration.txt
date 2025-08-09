@@ -240,12 +240,6 @@
 # keep rules. Add a commonly used SearchView to the keep list until b/109831488 is resolved.
 -keep class androidx.appcompat.widget.SearchView { <init>(...); }
 # End of content from C:\Users\prane\.gradle\caches\8.12\transforms\3d7fa6a22ca661ac28e861f7750459ca\transformed\appcompat-1.1.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\49588869c48f62e28597b324f47efc86\transformed\jetified-firebase-common-20.4.3\proguard.txt
--dontwarn com.google.firebase.platforminfo.KotlinDetector
--dontwarn com.google.auto.value.AutoValue
--dontwarn com.google.auto.value.AutoValue$Builder
-
-# End of content from C:\Users\prane\.gradle\caches\8.12\transforms\49588869c48f62e28597b324f47efc86\transformed\jetified-firebase-common-20.4.3\proguard.txt
 # The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\abeb9b22d74e044b4c12ae29dd9f8035\transformed\jetified-play-services-measurement-21.6.1\proguard.txt
 # We keep all fields for every generated proto file as the runtime uses
 # reflection over them that ProGuard cannot detect. Without this keep
@@ -264,6 +258,39 @@
 }
 
 # End of content from C:\Users\prane\.gradle\caches\8.12\transforms\6cf1f5c564ff9bf51f58c730dad4dee4\transformed\jetified-play-services-measurement-sdk-21.6.1\proguard.txt
+# The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\49588869c48f62e28597b324f47efc86\transformed\jetified-firebase-common-20.4.3\proguard.txt
+-dontwarn com.google.firebase.platforminfo.KotlinDetector
+-dontwarn com.google.auto.value.AutoValue
+-dontwarn com.google.auto.value.AutoValue$Builder
+
+# End of content from C:\Users\prane\.gradle\caches\8.12\transforms\49588869c48f62e28597b324f47efc86\transformed\jetified-firebase-common-20.4.3\proguard.txt
+# The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\31e46ed294a35425e679d09febf4c6d7\transformed\jetified-play-services-measurement-impl-21.6.1\proguard.txt
+# We keep all fields for every generated proto file as the runtime uses
+# reflection over them that ProGuard cannot detect. Without this keep
+# rule, fields may be removed that would cause runtime failures.
+-keepclassmembers class * extends com.google.android.gms.internal.measurement.zzjt {
+  <fields>;
+}
+
+# End of content from C:\Users\prane\.gradle\caches\8.12\transforms\31e46ed294a35425e679d09febf4c6d7\transformed\jetified-play-services-measurement-impl-21.6.1\proguard.txt
+# The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\d1f7c8d69a10b9f021117a80fdb64393\transformed\jetified-play-services-measurement-sdk-api-21.6.1\proguard.txt
+# We keep all fields for every generated proto file as the runtime uses
+# reflection over them that ProGuard cannot detect. Without this keep
+# rule, fields may be removed that would cause runtime failures.
+-keepclassmembers class * extends com.google.android.gms.internal.measurement.zzjt {
+  <fields>;
+}
+
+# End of content from C:\Users\prane\.gradle\caches\8.12\transforms\d1f7c8d69a10b9f021117a80fdb64393\transformed\jetified-play-services-measurement-sdk-api-21.6.1\proguard.txt
+# The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\09dca10b4bdaae89e9a53b1baba86347\transformed\jetified-play-services-measurement-base-21.6.1\proguard.txt
+# We keep all fields for every generated proto file as the runtime uses
+# reflection over them that ProGuard cannot detect. Without this keep
+# rule, fields may be removed that would cause runtime failures.
+-keepclassmembers class * extends com.google.android.gms.internal.measurement.zzjt {
+  <fields>;
+}
+
+# End of content from C:\Users\prane\.gradle\caches\8.12\transforms\09dca10b4bdaae89e9a53b1baba86347\transformed\jetified-play-services-measurement-base-21.6.1\proguard.txt
 # The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\7aa4b832140033e0deb6b4ca4b47bd4e\transformed\recyclerview-1.0.0\proguard.txt
 # Copyright (C) 2015 The Android Open Source Project
 #
@@ -287,15 +314,6 @@
 }
 
 # End of content from C:\Users\prane\.gradle\caches\8.12\transforms\7aa4b832140033e0deb6b4ca4b47bd4e\transformed\recyclerview-1.0.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\31e46ed294a35425e679d09febf4c6d7\transformed\jetified-play-services-measurement-impl-21.6.1\proguard.txt
-# We keep all fields for every generated proto file as the runtime uses
-# reflection over them that ProGuard cannot detect. Without this keep
-# rule, fields may be removed that would cause runtime failures.
--keepclassmembers class * extends com.google.android.gms.internal.measurement.zzjt {
-  <fields>;
-}
-
-# End of content from C:\Users\prane\.gradle\caches\8.12\transforms\31e46ed294a35425e679d09febf4c6d7\transformed\jetified-play-services-measurement-impl-21.6.1\proguard.txt
 # The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\71abc09a867ea060afec5ad4ad073715\transformed\lifecycle-viewmodel-2.7.0\proguard.txt
 -keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
     <init>();
@@ -374,24 +392,6 @@
 
 
 # End of content from C:\Users\prane\.gradle\caches\8.12\transforms\bdde29b162dafbd7b993c0a2f0b90dfa\transformed\jetified-play-services-tasks-18.1.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\d1f7c8d69a10b9f021117a80fdb64393\transformed\jetified-play-services-measurement-sdk-api-21.6.1\proguard.txt
-# We keep all fields for every generated proto file as the runtime uses
-# reflection over them that ProGuard cannot detect. Without this keep
-# rule, fields may be removed that would cause runtime failures.
--keepclassmembers class * extends com.google.android.gms.internal.measurement.zzjt {
-  <fields>;
-}
-
-# End of content from C:\Users\prane\.gradle\caches\8.12\transforms\d1f7c8d69a10b9f021117a80fdb64393\transformed\jetified-play-services-measurement-sdk-api-21.6.1\proguard.txt
-# The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\09dca10b4bdaae89e9a53b1baba86347\transformed\jetified-play-services-measurement-base-21.6.1\proguard.txt
-# We keep all fields for every generated proto file as the runtime uses
-# reflection over them that ProGuard cannot detect. Without this keep
-# rule, fields may be removed that would cause runtime failures.
--keepclassmembers class * extends com.google.android.gms.internal.measurement.zzjt {
-  <fields>;
-}
-
-# End of content from C:\Users\prane\.gradle\caches\8.12\transforms\09dca10b4bdaae89e9a53b1baba86347\transformed\jetified-play-services-measurement-base-21.6.1\proguard.txt
 # The proguard configuration file for the following section is C:\Users\prane\.gradle\caches\8.12\transforms\6a0c96fd6ce96d6c5b648ef52be7d40f\transformed\jetified-play-services-basement-18.3.0\proguard.txt
 # Needed when building against pre-Marshmallow SDK.
 -dontwarn android.security.NetworkSecurityPolicy

@@ -138,7 +138,7 @@ Marking layout:abc_popup_menu_item_layout:2131427347 reachable: referenced from 
 Marking attr:toolbarNavigationButtonStyle:2130903396 reachable: referenced from C:\Users\prane\colorful_trash_game\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:toolbarStyle:2130903397 reachable: referenced from C:\Users\prane\colorful_trash_game\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking string:abc_action_bar_up_description:2131623937 reachable: referenced from C:\Users\prane\colorful_trash_game\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
-Marking string:not_set:2131623983 reachable: referenced from C:\Users\prane\colorful_trash_game\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
+Marking string:not_set:2131623988 reachable: referenced from C:\Users\prane\colorful_trash_game\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:seekBarPreferenceStyle:2130903314 reachable: referenced from C:\Users\prane\colorful_trash_game\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking attr:listMenuViewStyle:2130903246 reachable: referenced from C:\Users\prane\colorful_trash_game\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
 Marking string:abc_prepend_shortcut_label:2131623953 reachable: referenced from C:\Users\prane\colorful_trash_game\android\app\build\intermediates\dex\release\minifyReleaseWithR8\classes.dex
@@ -4868,6 +4868,7 @@ Marking attr:dependency:2130903149 used because it matches string pool constant 
 Marking id:right:2131230861 used because it matches string pool constant right
 Marking id:right_icon:2131230862 used because it matches string pool constant right
 Marking id:right_side:2131230863 used because it matches string pool constant right
+Marking string:gcm_defaultSenderId:2131623983 used because it matches string pool constant gcm_defaultSenderId
 Marking attr:divider:2130903160 used because it matches string pool constant div
 Marking attr:dividerHorizontal:2130903161 used because it matches string pool constant div
 Marking attr:dividerPadding:2130903162 used because it matches string pool constant div
@@ -4890,6 +4891,10 @@ Marking id:text2:2131230914 used because it matches string pool constant text
 Marking id:textSpacerNoButtons:2131230915 used because it matches string pool constant text
 Marking id:textSpacerNoTitle:2131230916 used because it matches string pool constant text
 Marking integer:google_play_services_version:2131296260 used because it matches string pool constant google_
+Marking string:google_api_key:2131623984 used because it matches string pool constant google_
+Marking string:google_app_id:2131623985 used because it matches string pool constant google_
+Marking string:google_crash_reporting_api_key:2131623986 used because it matches string pool constant google_
+Marking string:google_storage_bucket:2131623987 used because it matches string pool constant google_
 Marking attr:maxButtonHeight:2130903257 used because it matches string pool constant max
 Marking attr:maxHeight:2130903258 used because it matches string pool constant max
 Marking attr:maxWidth:2130903259 used because it matches string pool constant max
@@ -5020,7 +5025,7 @@ Marking id:search_mag_icon:2131230877 used because it matches string pool consta
 Marking id:search_plate:2131230878 used because it matches string pool constant search
 Marking id:search_src_text:2131230879 used because it matches string pool constant search
 Marking id:search_voice_btn:2131230880 used because it matches string pool constant search
-Marking string:search_menu_title:2131623985 used because it matches string pool constant search
+Marking string:search_menu_title:2131623991 used because it matches string pool constant search
 Marking bool:config_materialPreferenceIconSpaceReserved:2130968579 used because it matches string pool constant config
 Marking integer:config_tooltipAnimTime:2131296259 used because it matches string pool constant config
 Marking attr:font:2130903196 used because it matches string pool constant font
@@ -5140,7 +5145,7 @@ Marking layout:notification_template_custom_big:2131427363 used because it match
 Marking layout:notification_template_icon_group:2131427364 used because it matches string pool constant no
 Marking layout:notification_template_part_chronometer:2131427365 used because it matches string pool constant no
 Marking layout:notification_template_part_time:2131427366 used because it matches string pool constant no
-Marking string:not_set:2131623983 used because it matches string pool constant no
+Marking string:not_set:2131623988 used because it matches string pool constant no
 Marking attr:editTextBackground:2130903177 used because it matches string pool constant edit
 Marking attr:editTextColor:2130903178 used because it matches string pool constant edit
 Marking attr:editTextPreferenceStyle:2130903179 used because it matches string pool constant edit
@@ -5157,6 +5162,7 @@ Marking id:src_atop:2131230892 used because it matches string pool constant sr
 Marking id:src_in:2131230893 used because it matches string pool constant sr
 Marking id:src_over:2131230894 used because it matches string pool constant sr
 Marking attr:ttcIndex:2130903404 used because it matches string pool constant tt
+Marking string:project_id:2131623990 used because it matches string pool constant project_id
 Marking xml:ga_ad_services_config:2131820544 used because it matches string pool constant ga_
 Marking id:none:2131230844 used because it matches string pool constant none
 Marking attr:contentDescription:2130903137 used because it matches string pool constant cont
@@ -5170,6 +5176,7 @@ Marking attr:controlBackground:2130903144 used because it matches string pool co
 Marking id:content:2131230801 used because it matches string pool constant cont
 Marking id:contentPanel:2131230802 used because it matches string pool constant cont
 Marking string:copy:2131623972 used because it matches string pool constant copy
+Marking string:google_app_id:2131623985 used because it matches string pool constant google_app_id
 Marking attr:lineHeight:2130903239 used because it matches string pool constant line
 Marking id:line1:2131230834 used because it matches string pool constant line
 Marking id:line3:2131230835 used because it matches string pool constant line
@@ -5291,6 +5298,7 @@ Marking id:action_mode_bar_stub:2131230773 used because it matches string pool c
 Marking id:action_mode_close_button:2131230774 used because it matches string pool constant action
 Marking id:action_text:2131230775 used because it matches string pool constant action
 Marking id:actions:2131230776 used because it matches string pool constant action
+Marking string:google_api_key:2131623984 used because it matches string pool constant google_api_key
 Marking attr:menu:2130903261 used because it matches string pool constant menu
 Marking attr:spanCount:2130903328 used because it matches string pool constant span
 Marking attr:fontWeight:2130903207 used because it matches string pool constant fontWeight
@@ -5341,6 +5349,7 @@ Marking attr:allowDividerAfterLastItem:2130903082 used because it matches string
 Marking attr:allowDividerBelow:2130903083 used because it matches string pool constant all
 Marking attr:allowStacking:2130903084 used because it matches string pool constant all
 Marking id:all:2131230781 used because it matches string pool constant all
+Marking string:google_storage_bucket:2131623987 used because it matches string pool constant google_storage_bucket
 Marking color:call_notification_answer_color:2131034152 used because it matches string pool constant call
 Marking color:call_notification_decline_color:2131034153 used because it matches string pool constant call
 Marking string:call_notification_answer_action:2131623964 used because it matches string pool constant call
@@ -6848,8 +6857,14 @@ Marking id:tag_window_insets_animation_callback:2131230912 used because it match
 @string/exo_download_paused_for_wifi : reachable=false
 @string/exo_download_removing : reachable=false
 @string/expand_button_title : reachable=false
+@string/gcm_defaultSenderId : reachable=true
+@string/google_api_key : reachable=true
+@string/google_app_id : reachable=true
+@string/google_crash_reporting_api_key : reachable=true
+@string/google_storage_bucket : reachable=true
 @string/not_set : reachable=true
 @string/preference_copied : reachable=false
+@string/project_id : reachable=true
 @string/search_menu_title : reachable=true
 @string/status_bar_notification_info_overflow : reachable=false
 @string/summary_collapsed_preference_list : reachable=false
@@ -9001,8 +9016,14 @@ The root reachable resources are:
  string:call_notification_screening_text:2131623970
  string:common_google_play_services_unknown_issue:2131623971
  string:copy:2131623972
- string:not_set:2131623983
- string:search_menu_title:2131623985
+ string:gcm_defaultSenderId:2131623983
+ string:google_api_key:2131623984
+ string:google_app_id:2131623985
+ string:google_crash_reporting_api_key:2131623986
+ string:google_storage_bucket:2131623987
+ string:not_set:2131623988
+ string:project_id:2131623990
+ string:search_menu_title:2131623991
  style:Animation_AppCompat_Tooltip:2131689476
  style:LaunchTheme:2131689634
  style:NormalTheme:2131689635
@@ -9315,11 +9336,11 @@ Unused resources are:
  string:exo_download_paused_for_wifi:2131623980
  string:exo_download_removing:2131623981
  string:expand_button_title:2131623982
- string:preference_copied:2131623984
- string:status_bar_notification_info_overflow:2131623986
- string:summary_collapsed_preference_list:2131623987
- string:v7_preference_off:2131623988
- string:v7_preference_on:2131623989
+ string:preference_copied:2131623989
+ string:status_bar_notification_info_overflow:2131623992
+ string:summary_collapsed_preference_list:2131623993
+ string:v7_preference_off:2131623994
+ string:v7_preference_on:2131623995
  style:AlertDialog_AppCompat:2131689472
  style:AlertDialog_AppCompat_Light:2131689473
  style:Animation_AppCompat_Dialog:2131689474

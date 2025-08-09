@@ -2,3 +2,7 @@
 *.apk filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.jar filter=lfs diff=lfs merge=lfs -text
+/android/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/Co1Yf1YLvv9OrOmT7BZzsjXqCGk= filter=lfs diff=lfs merge=lfs -text
+/android/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/a7B3due6juGw2IYXOq8E+AOdNx0= filter=lfs diff=lfs merge=lfs -text
+/android/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/h6BvttVQ83S4qd0CZHqiyfiyIJM= filter=lfs diff=lfs merge=lfs -text
+/android/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/ujsst_+gjPaIvKzjBRUxOWwj_QI= filter=lfs diff=lfs merge=lfs -text

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'tracking_service.dart';
@@ -33,6 +34,8 @@ class SortingGamePage extends StatefulWidget {
 class _SortingGamePageState extends State<SortingGamePage> {
   int _score = 0;
   WasteItem? _currentItem;
+  int _remainingTime = 10; // ✅ 10-second timer
+  Timer? _timer;
 
   final List<WasteItem> _allItems = [
     WasteItem(name: 'Banana Peel', imagePath: 'assets/images/banana.png', type: WasteType.organic),
@@ -55,31 +58,54 @@ class _SortingGamePageState extends State<SortingGamePage> {
     _loadNextItem();
   }
 
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    _timer?.cancel();
+    _remainingTime = 10; // ✅ reset to 10 seconds
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_remainingTime > 0) {
+        setState(() => _remainingTime--);
+      } else {
+        timer.cancel();
+        _showFeedback("⏳ Time's up! Moving to next item.", Colors.orange);
+        _loadNextItem();
+      }
+    });
+  }
+
   void _loadNextItem() {
+    _timer?.cancel();
     if (_remainingItems.isEmpty) {
       setState(() => _currentItem = null);
       _goToQuizPage();
       return;
     }
     _remainingItems.shuffle();
-    setState(() => _currentItem = _remainingItems.first);
+    setState(() {
+      _currentItem = _remainingItems.first;
+    });
+    _startTimer(); // ✅ Start timer for each item
   }
 
   void _handleDrop(WasteItem item, WasteType binType) {
     bool isCorrect = item.type == binType;
-    TrackingService.logDragAttempt(
-      item.name,
-      isCorrect,
-    );
+    TrackingService.logDragAttempt(item.name, isCorrect);
+
     if (isCorrect) {
       setState(() {
         _score++;
         _remainingItems.remove(item);
       });
-      _showFeedback("Good!", Colors.green);
-      Future.delayed(const Duration(milliseconds: 800), _loadNextItem);
+      _timer?.cancel();
+      _showFeedback("✅ Good!", Colors.green);
+      Future.delayed(const Duration(milliseconds: 600), _loadNextItem);
     } else {
-      _showFeedback("Try smart. That's not the correct bin!", Colors.red);
+      _showFeedback("❌ Wrong bin! Try again.", Colors.red);
     }
   }
 
@@ -127,7 +153,7 @@ class _SortingGamePageState extends State<SortingGamePage> {
             await ProgressTracker.markCategoryCompleted(categoryKey);
             if (!mounted) return;
 
-            Navigator.of(context).pop(); // close alert dialog if open
+            Navigator.of(context).pop();
 
             if (!mounted) return;
 
@@ -184,9 +210,18 @@ class _SortingGamePageState extends State<SortingGamePage> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            Text(
-              'Score: $_score',
-              style: GoogleFonts.fredoka(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.indigo),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'Score: $_score',
+                  style: GoogleFonts.fredoka(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.indigo),
+                ),
+                Text(
+                  'Time: $_remainingTime s',
+                  style: GoogleFonts.fredoka(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.red),
+                ),
+              ],
             ),
             const SizedBox(height: 30),
             if (_currentItem != null) ...[

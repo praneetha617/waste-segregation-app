@@ -1,1 +1,39 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"colorfultrashgame","appId":"1:20350234511:android:0163605154ceeabcf3e5fa","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"colorfultrashgame","configurations":{"android":"1:20350234511:android:0163605154ceeabcf3e5fa","ios":"1:20350234511:ios:2df974bb5dbe9f78f3e5fa","macos":"1:20350234511:ios:2df974bb5dbe9f78f3e5fa","web":"1:20350234511:web:5804ce45b38be492f3e5fa","windows":"1:20350234511:web:7c28baa3006ea72af3e5fa"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "colorfultrashgame",
+          "appId": "1:20350234511:android:0163605154ceeabcf3e5fa",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "colorfultrashgame",
+          "configurations": {
+            "android": "1:20350234511:android:0163605154ceeabcf3e5fa",
+            "ios": "1:20350234511:ios:2df974bb5dbe9f78f3e5fa",
+            "macos": "1:20350234511:ios:2df974bb5dbe9f78f3e5fa",
+            "web": "1:20350234511:web:5804ce45b38be492f3e5fa",
+            "windows": "1:20350234511:web:7c28baa3006ea72af3e5fa"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

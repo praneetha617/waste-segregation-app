@@ -1,8 +1,12 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; //  Required for orientation
 import 'package:google_fonts/google_fonts.dart';
 import 'widgets/my_video_widget.dart';
 import 'sorting_game_page.dart';
-// import 'your_enum_file.dart'; // Only if needed
+
+// Replace with actual enum import if not already included
+// import 'your_enum_file.dart';
 
 class EducationalVideoPage extends StatefulWidget {
   final String categoryName;
@@ -25,6 +29,26 @@ class EducationalVideoPage extends StatefulWidget {
 class _EducationalVideoPageState extends State<EducationalVideoPage> {
   bool _videoCompleted = false;
 
+  // Force landscape on entry
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+  }
+
+  // Revert to portrait on exit
+  @override
+  void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    super.dispose();
+  }
+
+  // Determine waste type based on category name
   WasteType get wasteType {
     if (widget.categoryName.toLowerCase().contains('wet') ||
         widget.categoryName.toLowerCase().contains('organic')) {
@@ -80,6 +104,8 @@ class _EducationalVideoPageState extends State<EducationalVideoPage> {
                         ),
                       ),
                       const SizedBox(height: 20),
+                      
+                      // Custom video widget
                       MyVideoWidget(
                         assetPath: widget.videoAsset,
                         onVideoCompleted: () {
@@ -88,6 +114,7 @@ class _EducationalVideoPageState extends State<EducationalVideoPage> {
                           });
                         },
                       ),
+                      
                       const SizedBox(height: 18),
                       Text(
                         "Watch this short video to learn about ${widget.categoryName}!",
@@ -95,6 +122,8 @@ class _EducationalVideoPageState extends State<EducationalVideoPage> {
                         style: GoogleFonts.fredoka(fontSize: 18, color: Colors.grey[700]),
                       ),
                       const SizedBox(height: 26),
+                      
+                      // Continue button logic
                       ElevatedButton.icon(
                         icon: const Icon(Icons.arrow_forward),
                         label: Text(
@@ -108,24 +137,30 @@ class _EducationalVideoPageState extends State<EducationalVideoPage> {
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
-                        backgroundColor: _videoCompleted
-                            ? widget.binColor
-                            : widget.binColor.withAlpha((0.15 * 255).toInt()),
+                          backgroundColor: _videoCompleted
+                              ? widget.binColor
+                              : widget.binColor.withAlpha((0.15 * 255).toInt()),
                           foregroundColor: _videoCompleted ? Colors.white : Colors.grey[600],
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
                           minimumSize: const Size(200, 48),
                           elevation: _videoCompleted ? 4 : 0,
                         ),
                         onPressed: _videoCompleted
-                            ? () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => SortingGamePage(selectedType: wasteType),
-                                  ),
-                                );
-                              }
-                            : null,
+                            ? () async {
+                         // Reset to portrait BEFORE navigating
+                                await SystemChrome.setPreferredOrientations([
+                                DeviceOrientation.portraitUp,
+                             ]);
+
+        //  Then navigate to the game
+                            if (!context.mounted) return;
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => SortingGamePage(selectedType: wasteType),
+                         ),
+                      );
+                    }
+                : null,
                       ),
                     ],
                   ),

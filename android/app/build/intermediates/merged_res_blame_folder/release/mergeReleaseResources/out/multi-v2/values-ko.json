@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.colorful_trash_game.app-mergeReleaseResources-49:/values-ko/values-ko.xml",
+            "outputFile": "com.example.colorful_trash_game.app-mergeReleaseResources-50:/values-ko/values-ko.xml",
             "map": [
                 {
                     "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\3d7fa6a22ca661ac28e861f7750459ca\\transformed\\appcompat-1.1.0\\res\\values-ko\\values-ko.xml",

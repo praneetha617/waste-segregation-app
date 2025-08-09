@@ -3,7 +3,6 @@
     package="com.example.colorful_trash_game"
     minSdkVersion="21"
     targetSdkVersion="35"
-    shrinking="true"
     mergedManifest="build\intermediates\merged_manifest\release\processReleaseMainManifest\AndroidManifest.xml"
     manifestMergeReport="build\outputs\logs\manifest-merger-release-report.txt"
     proguardFiles="build\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.7.3;C:\Users\prane\flutter\packages\flutter_tools\gradle\flutter_proguard_rules.pro;proguard-rules.pro"
@@ -31,7 +30,7 @@
       type="MAIN"
       applicationId="com.example.colorful_trash_game"
       generatedSourceFolders="build\generated\ap_generated_sources\release\out"
-      generatedResourceFolders="build\generated\res\resValues\release"
+      generatedResourceFolders="build\generated\res\google-services\release;build\generated\res\resValues\release"
       desugaredMethodsFiles="C:\Users\prane\.gradle\caches\8.12\transforms\5ec9ee4b235693ed2bedb5b0e9f0116b\transformed\D8BackportedDesugaredMethods.txt">
   </artifact>
 </variant>

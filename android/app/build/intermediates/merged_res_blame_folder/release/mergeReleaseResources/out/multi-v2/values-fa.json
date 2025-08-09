@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.colorful_trash_game.app-mergeReleaseResources-49:/values-fa/values-fa.xml",
+            "outputFile": "com.example.colorful_trash_game.app-mergeReleaseResources-50:/values-fa/values-fa.xml",
             "map": [
                 {
                     "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\6a0c96fd6ce96d6c5b648ef52be7d40f\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-fa\\values.xml",

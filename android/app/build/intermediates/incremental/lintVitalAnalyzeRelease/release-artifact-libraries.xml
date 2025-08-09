@@ -4,11 +4,10 @@
       jars="C:\Users\prane\colorful_trash_game\android\app\build\intermediates\flutter\release\libs.jar"
       resolved="__local_aars__:C:\Users\prane\colorful_trash_game\android\app\build\intermediates\flutter\release\libs.jar:unspecified"/>
   <library
-      name=":@@:shared_preferences_android::release"
-      jars="C:\Users\prane\.gradle\caches\8.12\transforms\ca83706f1d58c342486f85378ccb3001\transformed\out\jars\classes.jar;C:\Users\prane\.gradle\caches\8.12\transforms\ca83706f1d58c342486f85378ccb3001\transformed\out\jars\libs\R.jar"
-      resolved="io.flutter.plugins.sharedpreferences:shared_preferences_android:1.0-SNAPSHOT"
-      partialResultsDir="C:\Users\prane\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.4.10\android\build\intermediates\lint_vital_partial_results\release\lintVitalAnalyzeRelease\out"
-      folder="C:\Users\prane\.gradle\caches\8.12\transforms\ca83706f1d58c342486f85378ccb3001\transformed\out"
+      name="com.google.firebase:firebase-analytics:21.6.1@aar"
+      jars="C:\Users\prane\.gradle\caches\8.12\transforms\268215f7295236f2ea32b34fb8805054\transformed\jetified-firebase-analytics-21.6.1\jars\classes.jar"
+      resolved="com.google.firebase:firebase-analytics:21.6.1"
+      folder="C:\Users\prane\.gradle\caches\8.12\transforms\268215f7295236f2ea32b34fb8805054\transformed\jetified-firebase-analytics-21.6.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -18,10 +17,11 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.google.firebase:firebase-analytics:21.6.1@aar"
-      jars="C:\Users\prane\.gradle\caches\8.12\transforms\268215f7295236f2ea32b34fb8805054\transformed\jetified-firebase-analytics-21.6.1\jars\classes.jar"
-      resolved="com.google.firebase:firebase-analytics:21.6.1"
-      folder="C:\Users\prane\.gradle\caches\8.12\transforms\268215f7295236f2ea32b34fb8805054\transformed\jetified-firebase-analytics-21.6.1"
+      name=":@@:shared_preferences_android::release"
+      jars="C:\Users\prane\.gradle\caches\8.12\transforms\ca83706f1d58c342486f85378ccb3001\transformed\out\jars\classes.jar;C:\Users\prane\.gradle\caches\8.12\transforms\ca83706f1d58c342486f85378ccb3001\transformed\out\jars\libs\R.jar"
+      resolved="io.flutter.plugins.sharedpreferences:shared_preferences_android:1.0-SNAPSHOT"
+      partialResultsDir="C:\Users\prane\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.4.10\android\build\intermediates\lint_vital_partial_results\release\lintVitalAnalyzeRelease\out"
+      folder="C:\Users\prane\.gradle\caches\8.12\transforms\ca83706f1d58c342486f85378ccb3001\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -567,9 +567,9 @@
       jars="C:\Users\prane\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-common\2.7.0\85334205d65cca70ed0109c3acbd29e22a2d9cb1\lifecycle-common-2.7.0.jar"
       resolved="androidx.lifecycle:lifecycle-common:2.7.0"/>
   <library
-      name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10@jar"
-      jars="C:\Users\prane\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk8\1.9.10\c7510d64a83411a649c76f2778304ddf71d7437b\kotlin-stdlib-jdk8-1.9.10.jar"
-      resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10"/>
+      name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22@jar"
+      jars="C:\Users\prane\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk8\1.8.22\b25c86d47d6b962b9cf0f8c3f320c8a10eea3dd1\kotlin-stdlib-jdk8-1.8.22.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22"/>
   <library
       name="androidx.annotation:annotation-experimental:1.4.0@aar"
       jars="C:\Users\prane\.gradle\caches\8.12\transforms\658801fcae573a5364385b885122e98e\transformed\jetified-annotation-experimental-1.4.0\jars\classes.jar"
@@ -691,9 +691,9 @@
       jars="C:\Users\prane\.gradle\caches\modules-2\files-2.1\androidx.annotation\annotation-jvm\1.9.1\b17951747e38bf3986a24431b9ba0d039958aa5f\annotation-jvm-1.9.1.jar"
       resolved="androidx.annotation:annotation-jvm:1.9.1"/>
   <library
-      name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10@jar"
-      jars="C:\Users\prane\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk7\1.9.10\bc5bfc2690338defd5195b05c57562f2194eeb10\kotlin-stdlib-jdk7-1.9.10.jar"
-      resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10"/>
+      name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22@jar"
+      jars="C:\Users\prane\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk7\1.8.22\4dabb8248310d833bb6a8b516024a91fd3d275c\kotlin-stdlib-jdk7-1.8.22.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22"/>
   <library
       name="org.jetbrains.kotlin:kotlin-stdlib:2.1.0@jar"
       jars="C:\Users\prane\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\2.1.0\85f8b81009cda5890e54ba67d64b5e599c645020\kotlin-stdlib-2.1.0.jar"
