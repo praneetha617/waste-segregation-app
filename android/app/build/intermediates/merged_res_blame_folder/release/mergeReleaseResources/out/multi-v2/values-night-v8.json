@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.colorful_trash_game.app-mergeReleaseResources-50:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.colorful_trash_game.app-mergeReleaseResources-51:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\3d7fa6a22ca661ac28e861f7750459ca\\transformed\\appcompat-1.1.0\\res\\values-night-v8\\values-night-v8.xml",
+                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\abf9778fc5c818bf490dc77d8c8858eb\\transformed\\appcompat-1.2.0\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

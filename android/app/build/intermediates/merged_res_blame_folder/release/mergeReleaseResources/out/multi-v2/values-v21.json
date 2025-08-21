@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.colorful_trash_game.app-mergeReleaseResources-50:/values-v21/values-v21.xml",
+            "outputFile": "com.example.colorful_trash_game.app-mergeReleaseResources-51:/values-v21/values-v21.xml",
             "map": [
                 {
                     "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\60158b6ef0eba3057dadcbb0af97f8e4\\transformed\\core-1.13.1\\res\\values-v21\\values-v21.xml",
@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\3d7fa6a22ca661ac28e861f7750459ca\\transformed\\appcompat-1.1.0\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\abf9778fc5c818bf490dc77d8c8858eb\\transformed\\appcompat-1.2.0\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,19,20,21,22,24,26,27,28,29,30,32,34,36,38,40,42,43,48,50,52,53,54,56,58,59,60,61,62,63,106,109,152,155,158,160,162,164,167,171,174,175,176,179,180,181,182,183,184,187,188,190,192,194,196,200,202,203,204,205,207,211,213,215,216,217,218,219,220,222,223,224,234,235,236,248",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

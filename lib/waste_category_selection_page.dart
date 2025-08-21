@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'educational_video_page.dart'; // Make sure this path is correct
+import 'educational_video_page.dart'; // Educational video page
 
 class WasteCategorySelectionPage extends StatelessWidget {
   const WasteCategorySelectionPage({super.key});
@@ -75,7 +75,7 @@ class WasteCategorySelectionPage extends StatelessWidget {
                         child: CategoryButton(
                           category: category,
                           onTap: () {
-                            // Removed FirebaseAnalytics logging
+                            // Navigate to educational video page
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -155,3 +155,7 @@ class CategoryButton extends StatelessWidget {
     );
   }
 }
+
+
+
+

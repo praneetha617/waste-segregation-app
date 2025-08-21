@@ -61,6 +61,7 @@ plugins {
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
     id("com.google.gms.google-services") // Required for Firebase
+    // id("com.google.firebase.firebase-perf") // Firebase Performance Monitoring
 }
 
 android {
@@ -69,7 +70,7 @@ android {
     ndkVersion "27.0.12077973"
 
     defaultConfig {
-        applicationId = "com.example.colorful_trash_game" // Must match google-services.json
+        applicationId = "com.example.colorful_trash_game" // Unique Application ID
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -109,11 +110,12 @@ flutter {
 }
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:32.7.0")) // Firebase BOM
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2")) // Firebase BOM
     implementation("com.google.firebase:firebase-analytics")            // Firebase Analytics
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.22")
+   // implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.22")
+    implementation ("com.google.firebase:firebase-perf-ktx") // Firebase Performance Monitoring
 }
 
-// Ensure Google Services plugin runs (redundant safeguard)
-apply plugin: "com.google.gms.google-services"
+// Apply Google Services plugin at the end
+// apply plugin: "com.google.gms.google-services"
 

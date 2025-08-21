@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.colorful_trash_game.app-mergeReleaseResources-50:/values-v24/values-v24.xml",
+            "outputFile": "com.example.colorful_trash_game.app-mergeReleaseResources-51:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\3d7fa6a22ca661ac28e861f7750459ca\\transformed\\appcompat-1.1.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\prane\\.gradle\\caches\\8.12\\transforms\\abf9778fc5c818bf490dc77d8c8858eb\\transformed\\appcompat-1.2.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
