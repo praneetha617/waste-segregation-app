@@ -92,7 +92,7 @@ final hazardousWasteQuestions = [
       "Green bin is for wet/organic waste.",
       "Blue bin is for dry/recyclable waste.",
       "Correct! Red bin is for hazardous waste like batteries.",
-      "pink bin is typically used in standard segregation.",
+      "pink bin is not typically used in standard segregation.",
     ], 
   ),
 ];

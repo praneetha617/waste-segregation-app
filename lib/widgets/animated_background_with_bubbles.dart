@@ -128,9 +128,11 @@ class _AnimatedBackgroundWithBubblesState
                   colors: [
                     Color.lerp(const Color(0xFF58CFFB), const Color(0xFF28E0AE),
                             _colorController.value)!
+                        // ignore: deprecated_member_use
                         .withOpacity(0.25),
                     Color.lerp(const Color(0xFF28E0AE), const Color(0xFF58CFFB),
                             _colorController.value)!
+                        // ignore: deprecated_member_use
                         .withOpacity(0.25),
                   ],
                   begin: Alignment.topLeft,
@@ -162,7 +164,7 @@ class _AnimatedBackgroundWithBubblesState
                     'assets/images/balloon.png',
                     width: balloon.size,
                     height: balloon.size,
-                    errorBuilder: (_, __, ___) =>
+                    errorBuilder: (_, _, _) =>
                         const Icon(Icons.error, color: Colors.red),
                   ),
                 ),
@@ -210,6 +212,7 @@ class _BubblesPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     for (var b in bubbles) {
       final paint = Paint()
+        // ignore: deprecated_member_use
         ..color = Colors.white.withOpacity(b.opacity)
         ..style = PaintingStyle.fill;
       canvas.drawCircle(

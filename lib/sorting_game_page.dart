@@ -220,9 +220,9 @@ class _SortingGamePageState extends State<SortingGamePage> {
     );
   }
 
-  /// Builds a bins layout that adapts to narrow phones:
-  /// - Picks 3/2/1 columns based on width
-  /// - Ensures each bin is at least kMinBin for touch usability
+  // Builds a bins layout that adapts to narrow phones:
+  // Picks 3/2/1 columns based on width
+  // Ensures each bin is at least kMinBin for touch usability
   Widget _buildAdaptiveBins(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {

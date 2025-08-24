@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'utils/progress_tracker.dart';
 import 'quiz_page.dart';
-import 'data/quiz_data.dart'; // uses your existing wet/dry/hazardous lists
+import 'data/quiz_data.dart'; 
 
-// Reuse the same model as your category game
+// Mixed Sorting Game Page
 enum WasteType { organic, dry, hazardous }
 
 class WasteItem {
@@ -36,7 +36,7 @@ class _MixedSortingGamePageState extends State<MixedSortingGamePage> {
   int _remainingTime = _secondsPerItem;
   Timer? _timer;
 
-  // ✅ Only your existing items — no new assets introduced
+  // All items for mixed sorting
   final List<WasteItem> _allItems = const [
     WasteItem(name: 'Banana Peel',        imagePath: 'assets/images/banana.png',        type: WasteType.organic),
     WasteItem(name: 'Vegetable Skin',     imagePath: 'assets/images/vegetable.png',     type: WasteType.organic),
@@ -99,10 +99,10 @@ class _MixedSortingGamePageState extends State<MixedSortingGamePage> {
         _remainingItems.remove(item);
       });
       _timer?.cancel();
-      _showSnack("✅ Good!", Colors.green);
+      _showSnack("Good!", Colors.green);
       Future.delayed(const Duration(milliseconds: 500), _loadNextItem);
     } else {
-      _showSnack("❌ Wrong bin! Try again.", Colors.red);
+      _showSnack("Wrong bin! Try again.", Colors.red);
     }
   }
 
@@ -123,7 +123,7 @@ class _MixedSortingGamePageState extends State<MixedSortingGamePage> {
     );
   }
 
-  // 👉 After mixed game: go to a quiz built from your existing question pools
+  // After mixed game: go to a quiz built from your existing question pools
   void _goToMixedQuiz() {
     if (!mounted) return;
 
@@ -166,6 +166,7 @@ class _MixedSortingGamePageState extends State<MixedSortingGamePage> {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 120),
               decoration: BoxDecoration(
+                // ignore: deprecated_member_use
                 color: isHover ? color.withOpacity(0.9) : color,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: const [
@@ -200,13 +201,13 @@ class _MixedSortingGamePageState extends State<MixedSortingGamePage> {
     );
   }
 
-  /// Adaptive bins — slightly larger on phones so they aren't dwarfed by the item
+  // Builds adaptive bins based on screen size
   Widget _buildAdaptiveBins(BuildContext context) {
     final mq = MediaQuery.of(context);
     final shortest = mq.size.shortestSide;
     final isPhone = shortest < 600;
 
-    // ↑ Increase phone sizes so bins ~range shown in your screenshot
+    // Define min/max sizes for bins based on device type
     const double phoneMin = 64.0;
     const double phoneMax = 104.0;
     const double tabMin = 72.0;
@@ -256,7 +257,7 @@ class _MixedSortingGamePageState extends State<MixedSortingGamePage> {
   Widget build(BuildContext context) {
     final total = _allItems.length;
 
-    // Make the draggable item a bit smaller than bins on phones
+    // Determine item size based on device type
     final isPhone = MediaQuery.of(context).size.shortestSide < 600;
     // This keeps the item comfortably smaller than phone binMax (104)
     final double itemImageSize = isPhone ? 72.0 : 96.0;
@@ -351,7 +352,7 @@ class _MixedSortingGamePageState extends State<MixedSortingGamePage> {
 
             const Spacer(),
 
-            // ✅ Adaptive bins
+            // Adaptive bins
             Padding(
               padding: const EdgeInsets.fromLTRB(12, 8, 12, 20),
               child: _buildAdaptiveBins(context),

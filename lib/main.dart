@@ -167,6 +167,7 @@ class _HomePageState extends State<HomePage>
               shadows: [
                 Shadow(
                     blurRadius: 3,
+                    // ignore: deprecated_member_use
                     color: Colors.black.withOpacity(0.18),
                     offset: const Offset(1, 2))
               ],
@@ -248,6 +249,7 @@ class _HomePageState extends State<HomePage>
                           border: Border.all(color: Colors.blue, width: 2),
                           boxShadow: [
                             BoxShadow(
+                              // ignore: deprecated_member_use
                               color: Colors.blue.withOpacity(0.2),
                               blurRadius: 6,
                               offset: const Offset(2, 4),
