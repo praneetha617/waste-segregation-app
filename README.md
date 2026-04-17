@@ -94,11 +94,3 @@ The reward screen also includes a fun environmental fact to make learning more e
 ## Development Environment
 
 This project was developed in Visual Studio environment and run using Flutter.
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/your-username/your-repository-name.git
-cd your-repository-name
